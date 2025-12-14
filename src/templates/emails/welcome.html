@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue chez Inutile Card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #000000;
+        }
+        .header {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .tagline {
+            font-size: 14px;
+            color: #999999;
+        }
+        .content {
+            padding: 40px 20px;
+        }
+        .greeting {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        .text {
+            font-size: 16px;
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 16px 32px;
+            background-color: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 20px 0;
+            transition: transform 0.2s;
+        }
+        .button:hover {
+            transform: scale(1.05);
+        }
+        .features {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .feature-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 20px;
+        }
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 20px;
+        }
+        .feature-text h3 {
+            font-size: 16px;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        .feature-text p {
+            font-size: 14px;
+            color: #999999;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            padding: 30px;
+            background-color: #0a0a0a;
+            border-radius: 16px;
+            border: 1px solid #1a1a1a;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #666666;
+            margin-top: 5px;
+        }
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+        }
+        .footer-text {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+        .social-links {
+            margin: 20px 0;
+        }
+        .social-link {
+            display: inline-block;
+            margin: 0 10px;
+            color: #999999;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .social-link:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">Inutile Card</div>
+            <div class="tagline">La carte de visite du futur</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <h1 class="greeting">Bienvenue {{firstName}} ! 🎉</h1>
+            
+            <p class="text">
+                Merci d'avoir rejoint Inutile Card ! Vous venez de faire le premier pas vers une révolution de votre networking.
+            </p>
+            
+            <p class="text">
+                Votre compte est maintenant actif et vous pouvez commencer à créer votre carte NFC personnalisée et votre profil web en quelques clics.
+            </p>
+
+            <center>
+                <a href="{{editorUrl}}" class="button">Créer ma carte maintenant →</a>
+            </center>
+
+            <!-- Features -->
+            <div class="features">
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-text">
+                        <h3>Setup en 2 minutes</h3>
+                        <p>Créez votre profil et personnalisez votre carte en moins de temps qu'il n'en faut pour le dire.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌐</div>
+                    <div class="feature-text">
+                        <h3>Profil web personnalisé</h3>
+                        <p>Une page unique à votre image, accessible 24/7 depuis n'importe où dans le monde.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">♾️</div>
+                    <div class="feature-text">
+                        <h3>Mises à jour illimitées</h3>
+                        <p>Modifiez vos informations à volonté, sans jamais réimprimer une nouvelle carte.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">10k+</div>
+                    <div class="stat-label">Cartes créées</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfaction</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24h</div>
+                    <div class="stat-label">Livraison</div>
+                </div>
+            </div>
+
+            <p class="text">
+                Besoin d'aide ? Notre équipe est là pour vous accompagner. Répondez simplement à cet email ou visitez notre <a href="{{faqUrl}}" style="color: #ffffff; text-decoration: underline;">FAQ</a>.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="social-links">
+                <a href="{{twitterUrl}}" class="social-link">Twitter</a>
+                <a href="{{linkedinUrl}}" class="social-link">LinkedIn</a>
+                <a href="{{instagramUrl}}" class="social-link">Instagram</a>
+            </div>
+            <p class="footer-text">
+                © 2025 Inutile Card. Tous droits réservés.
+            </p>
+            <p class="footer-text">
+                <a href="{{unsubscribeUrl}}" style="color: #666666; text-decoration: underline;">Se désabonner</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

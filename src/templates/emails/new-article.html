@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouvel article</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #000000;
+        }
+        .header {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .category-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #3b82f6;
+            color: #ffffff;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .content {
+            padding: 40px 20px;
+        }
+        .featured-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+        .article-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            color: #999999;
+        }
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .article-excerpt {
+            font-size: 18px;
+            color: #cccccc;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        .button {
+            display: inline-block;
+            padding: 16px 32px;
+            background-color: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        .key-points {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .key-points-title {
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .key-point {
+            display: flex;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+        .key-point:last-child {
+            margin-bottom: 0;
+        }
+        .key-point-icon {
+            width: 24px;
+            height: 24px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+            font-size: 12px;
+        }
+        .key-point-text {
+            font-size: 15px;
+            color: #cccccc;
+        }
+        .author-box {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 25px;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        .author-info h4 {
+            font-size: 16px;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        .author-info p {
+            font-size: 14px;
+            color: #999999;
+        }
+        .related-articles {
+            margin: 40px 0;
+        }
+        .related-title {
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .related-article {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.2s;
+        }
+        .related-article:hover {
+            background-color: #1a1a1a;
+            transform: translateX(5px);
+        }
+        .related-article h4 {
+            font-size: 16px;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        .related-article p {
+            font-size: 14px;
+            color: #999999;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        .cta-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+        .cta-text {
+            font-size: 16px;
+            color: #e0e7ff;
+            margin-bottom: 20px;
+        }
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+        }
+        .footer-text {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+        .social-links {
+            margin: 20px 0;
+        }
+        .social-link {
+            display: inline-block;
+            margin: 0 10px;
+            color: #999999;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">Inutile Card</div>
+            <div class="category-badge">{{category}}</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Featured Image -->
+            <div class="featured-image">
+                📰
+            </div>
+
+            <h1 class="article-title">{{articleTitle}}</h1>
+
+            <div class="article-meta">
+                <span class="meta-item">📅 {{publishDate}}</span>
+                <span class="meta-item">⏱️ {{readTime}} min de lecture</span>
+            </div>
+
+            <p class="article-excerpt">
+                {{articleExcerpt}}
+            </p>
+
+            <center>
+                <a href="{{articleUrl}}" class="button">Lire l'article complet →</a>
+            </center>
+
+            <!-- Key Points -->
+            <div class="key-points">
+                <div class="key-points-title">📌 Points clés</div>
+                {{#each keyPoints}}
+                <div class="key-point">
+                    <div class="key-point-icon">✓</div>
+                    <div class="key-point-text">{{this}}</div>
+                </div>
+                {{/each}}
+            </div>
+
+            <!-- Author -->
+            <div class="author-box">
+                <div class="author-avatar">{{authorInitials}}</div>
+                <div class="author-info">
+                    <h4>{{authorName}}</h4>
+                    <p>{{authorTitle}}</p>
+                </div>
+            </div>
+
+            <!-- Related Articles -->
+            {{#if relatedArticles}}
+            <div class="related-articles">
+                <h3 class="related-title">📚 Articles similaires</h3>
+                {{#each relatedArticles}}
+                <a href="{{this.url}}" class="related-article">
+                    <h4>{{this.title}}</h4>
+                    <p>{{this.excerpt}}</p>
+                </a>
+                {{/each}}
+            </div>
+            {{/if}}
+
+            <!-- CTA -->
+            <div class="cta-box">
+                <h3 class="cta-title">Prêt à révolutionner votre networking ?</h3>
+                <p class="cta-text">
+                    Découvrez comment Inutile Card peut transformer votre façon de networker
+                </p>
+                <a href="{{ctaUrl}}" style="display: inline-block; padding: 14px 28px; background-color: #ffffff; color: #000000; text-decoration: none; border-radius: 10px; font-weight: 600;">
+                    En savoir plus
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="social-links">
+                <a href="{{twitterUrl}}" class="social-link">Twitter</a>
+                <a href="{{linkedinUrl}}" class="social-link">LinkedIn</a>
+                <a href="{{instagramUrl}}" class="social-link">Instagram</a>
+            </div>
+            <p class="footer-text">
+                © 2025 Inutile Card. Tous droits réservés.
+            </p>
+            <p class="footer-text">
+                <a href="{{unsubscribeUrl}}" style="color: #666666; text-decoration: underline;">Se désabonner</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

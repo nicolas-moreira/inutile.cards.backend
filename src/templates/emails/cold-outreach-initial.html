@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Révolutionnez le networking de votre équipe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+        .header {
+            padding: 40px 20px 30px;
+            text-align: center;
+            background-color: #000000;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        .tagline {
+            font-size: 13px;
+            color: #999999;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 16px;
+            color: #666666;
+            margin-bottom: 25px;
+        }
+        .main-text {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            color: #ffffff;
+        }
+        .highlight-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        .highlight-text {
+            font-size: 15px;
+            color: #cccccc;
+            line-height: 1.6;
+        }
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            padding: 25px;
+            background-color: #f8f8f8;
+            border-radius: 12px;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #666666;
+        }
+        .benefits {
+            margin: 30px 0;
+        }
+        .benefit-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+        }
+        .benefit-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #000000;
+            color: #ffffff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 20px;
+        }
+        .benefit-content h3 {
+            font-size: 16px;
+            color: #000000;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .benefit-content p {
+            font-size: 14px;
+            color: #666666;
+        }
+        .cta-box {
+            background-color: #000000;
+            border-radius: 12px;
+            padding: 35px;
+            text-align: center;
+            margin: 35px 0;
+        }
+        .cta-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+        .cta-text {
+            font-size: 15px;
+            color: #cccccc;
+            margin-bottom: 25px;
+        }
+        .button {
+            display: inline-block;
+            padding: 16px 35px;
+            background-color: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        .social-proof {
+            background-color: #f8f8f8;
+            border-left: 4px solid #000000;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        .social-proof-text {
+            font-size: 15px;
+            color: #333333;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        .social-proof-author {
+            font-size: 14px;
+            color: #666666;
+            font-weight: 600;
+        }
+        .signature {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .signature-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+        .signature-title {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 15px;
+        }
+        .signature-contact {
+            font-size: 13px;
+            color: #999999;
+        }
+        .signature-contact a {
+            color: #000000;
+            text-decoration: none;
+        }
+        .footer {
+            padding: 30px 20px;
+            text-align: center;
+            background-color: #f8f8f8;
+        }
+        .footer-text {
+            font-size: 12px;
+            color: #999999;
+            margin-bottom: 10px;
+        }
+        .ps-box {
+            background-color: #fffbeb;
+            border-left: 4px solid #fbbf24;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        .ps-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 8px;
+        }
+        .ps-text {
+            font-size: 14px;
+            color: #78350f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">Inutile Cards</div>
+            <div class="tagline">La carte de visite du futur</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <p class="greeting">Bonjour {{contactName}},</p>
+
+            <p class="main-text">
+                Je m'appelle {{senderName}} et je travaille chez Inutile Cards. J'ai remarqué que {{companyName}} 
+                {{companyContext}} et je pense avoir quelque chose qui pourrait vraiment vous intéresser.
+            </p>
+
+            <p class="main-text">
+                <strong>Imaginez :</strong> Votre équipe commerciale qui partage ses informations professionnelles 
+                en un simple tap sur n'importe quel smartphone. Plus de cartes papier perdues, plus d'informations 
+                obsolètes, juste du networking moderne et efficace.
+            </p>
+
+            <!-- Highlight Box -->
+            <div class="highlight-box">
+                <div class="highlight-title">Le problème que nous résolvons</div>
+                <p class="highlight-text">
+                    Les cartes de visite traditionnelles coûtent cher, sont facilement perdues, et deviennent 
+                    obsolètes dès qu'une information change. Les équipes commerciales gaspillent du temps et 
+                    de l'argent à réimprimer constamment.
+                </p>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-row">
+                <div class="stat">
+                    <div class="stat-number">88%</div>
+                    <div class="stat-label">jetées < 1 semaine</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">€2000+</div>
+                    <div class="stat-label">coût/an/équipe</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">30h</div>
+                    <div class="stat-label">perdues en gestion</div>
+                </div>
+            </div>
+
+            <!-- Benefits -->
+            <div class="benefits">
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚡</div>
+                    <div class="benefit-content">
+                        <h3>Déploiement immédiat</h3>
+                        <p>Équipez votre équipe en 48h. Activation et personnalisation en 5 minutes par personne.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">♾️</div>
+                    <div class="benefit-content">
+                        <h3>Zéro réimpression</h3>
+                        <p>Changement de poste, nouveau numéro ? Mise à jour instantanée pour toute l'équipe.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">📊</div>
+                    <div class="benefit-content">
+                        <h3>Analytics centralisées</h3>
+                        <p>Dashboard entreprise pour suivre l'activité networking de votre équipe en temps réel.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎨</div>
+                    <div class="benefit-content">
+                        <h3>Branding unifié</h3>
+                        <p>Design cohérent avec votre identité de marque sur toutes les cartes de l'équipe.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Proof -->
+            <div class="social-proof">
+                <div class="social-proof-text">
+                    "Nous avons équipé nos 25 commerciaux avec Inutile Cards. En 3 mois, +40% de contacts 
+                    qualifiés sauvegardés vs les cartes papier. Le ROI a été immédiat."
+                </div>
+                <div class="social-proof-author">— Thomas M., Dir. Commercial chez TechCorp</div>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-box">
+                <div class="cta-title">Intéressé par une démo ?</div>
+                <p class="cta-text">
+                    Je vous propose un appel de 15 minutes pour vous montrer comment {{companyName}} 
+                    pourrait bénéficier d'Inutile Cards.
+                </p>
+                <a href="{{calendarUrl}}" class="button">Réserver une démo →</a>
+            </div>
+
+            <!-- PS Box -->
+            <div class="ps-box">
+                <div class="ps-title">🎁 Offre spéciale première entreprise</div>
+                <div class="ps-text">
+                    Pour les 5 premières entreprises ce mois-ci : essai gratuit pour 5 collaborateurs + 
+                    20% de réduction sur la première commande équipe.
+                </div>
+            </div>
+
+            <p class="main-text">
+                Qu'en pensez-vous ? Avez-vous 15 minutes cette semaine pour en discuter ?
+            </p>
+
+            <!-- Signature -->
+            <div class="signature">
+                <div class="signature-name">{{senderName}}</div>
+                <div class="signature-title">{{senderTitle}} - Inutile Cards</div>
+                <div class="signature-contact">
+                    📧 <a href="mailto:{{senderEmail}}">{{senderEmail}}</a><br>
+                    📞 <a href="tel:{{senderPhone}}">{{senderPhone}}</a><br>
+                    🌐 <a href="https://inutile.cards">inutile.cards</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">
+                © 2025 Inutile Cards. Tous droits réservés.
+            </p>
+            <p class="footer-text">
+                Cet email vous a été envoyé car nous pensons qu'Inutile Cards pourrait bénéficier à {{companyName}}.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relance - Inutile Cards pour votre équipe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+        .header {
+            padding: 30px 20px;
+            text-align: center;
+            background-color: #000000;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 16px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+        .main-text {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 18px;
+            line-height: 1.7;
+        }
+        .quick-value {
+            background-color: #f8f8f8;
+            border-left: 4px solid #000000;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+        .quick-value-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 15px;
+        }
+        .value-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: #333333;
+        }
+        .value-item:last-child {
+            margin-bottom: 0;
+        }
+        .checkmark {
+            color: #22c55e;
+            font-weight: 700;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        .case-study {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 25px 0;
+            color: #ffffff;
+        }
+        .case-study-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #22c55e;
+            color: #000000;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .case-study-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+        .case-study-text {
+            font-size: 14px;
+            color: #cccccc;
+            margin-bottom: 15px;
+        }
+        .case-study-results {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .result {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        .result-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #22c55e;
+            margin-bottom: 5px;
+        }
+        .result-label {
+            font-size: 12px;
+            color: #999999;
+        }
+        .cta-buttons {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .button-primary {
+            display: inline-block;
+            padding: 16px 35px;
+            background-color: #000000;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 5px;
+        }
+        .button-secondary {
+            display: inline-block;
+            padding: 16px 35px;
+            background-color: transparent;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            border: 2px solid #000000;
+            margin: 5px;
+        }
+        .urgency-box {
+            background-color: #fffbeb;
+            border: 2px solid #fbbf24;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        .urgency-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 8px;
+        }
+        .urgency-text {
+            font-size: 14px;
+            color: #78350f;
+        }
+        .signature {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .signature-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+        .signature-title {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 12px;
+        }
+        .footer {
+            padding: 25px 20px;
+            text-align: center;
+            background-color: #f8f8f8;
+        }
+        .footer-text {
+            font-size: 12px;
+            color: #999999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">Inutile Cards</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <p class="greeting">Bonjour {{contactName}},</p>
+
+            <p class="main-text">
+                Je vous ai contacté {{daysSinceLastEmail}} concernant la modernisation du networking 
+                de votre équipe chez {{companyName}}.
+            </p>
+
+            <p class="main-text">
+                Je sais que vous êtes probablement occupé, alors je vais aller droit au but :
+            </p>
+
+            <!-- Quick Value -->
+            <div class="quick-value">
+                <div class="quick-value-title">3 raisons d'y jeter un œil maintenant :</div>
+                <div class="value-item">
+                    <span class="checkmark">✓</span>
+                    <span><strong>ROI immédiat :</strong> Économisez {{estimatedSavings}}€/an en cartes papier</span>
+                </div>
+                <div class="value-item">
+                    <span class="checkmark">✓</span>
+                    <span><strong>Setup en 48h :</strong> Toute votre équipe opérationnelle cette semaine</span>
+                </div>
+                <div class="value-item">
+                    <span class="checkmark">✓</span>
+                    <span><strong>Essai gratuit :</strong> Testez avec 5 collaborateurs, zéro engagement</span>
+                </div>
+            </div>
+
+            <!-- Case Study -->
+            <div class="case-study">
+                <div class="case-study-badge">SUCCESS STORY</div>
+                <div class="case-study-title">{{caseStudyCompany}} ({{caseStudyIndustry}})</div>
+                <div class="case-study-text">
+                    {{caseStudyTeamSize}} commerciaux équipés. Problème : cartes papier obsolètes, 
+                    informations perdues, image peu professionnelle en rendez-vous.
+                </div>
+                <div class="case-study-results">
+                    <div class="result">
+                        <div class="result-number">+47%</div>
+                        <div class="result-label">Contacts sauvegardés</div>
+                    </div>
+                    <div class="result">
+                        <div class="result-number">-€3.2k</div>
+                        <div class="result-label">Économies/an</div>
+                    </div>
+                    <div class="result">
+                        <div class="result-number">100%</div>
+                        <div class="result-label">Satisfaction équipe</div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="main-text">
+                <strong>Je vous propose :</strong> Un appel de 15 minutes où je vous montre exactement 
+                comment cela fonctionnerait pour {{companyName}}. Sans engagement, juste une conversation.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="cta-buttons">
+                <a href="{{calendarUrl}}" class="button-primary">Réserver 15 min →</a>
+                <a href="{{videoUrl}}" class="button-secondary">Voir la vidéo (2 min)</a>
+            </div>
+
+            <!-- Urgency -->
+            <div class="urgency-box">
+                <div class="urgency-title">⏰ Offre limitée</div>
+                <div class="urgency-text">
+                    Les 3 premières entreprises ce mois : 30% de réduction + onboarding personnalisé offert 
+                    (valeur 500€). Il reste {{slotsRemaining}} places.
+                </div>
+            </div>
+
+            <p class="main-text">
+                Si ce n'est pas le bon moment, pas de problème - dites-le moi simplement et je ne vous 
+                recontacterai pas. Mais si vous êtes curieux, je serais ravi d'en discuter.
+            </p>
+
+            <p class="main-text">
+                Qu'en dites-vous ?
+            </p>
+
+            <!-- Signature -->
+            <div class="signature">
+                <div class="signature-name">{{senderName}}</div>
+                <div class="signature-title">{{senderTitle}} - Inutile Cards</div>
+                <p style="font-size: 13px; color: #666666; margin-top: 10px;">
+                    PS : Si vous préférez un échange par email, répondez simplement avec vos questions. 
+                    Je suis là pour vous aider.
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">
+                © 2025 Inutile Cards. Tous droits réservés.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

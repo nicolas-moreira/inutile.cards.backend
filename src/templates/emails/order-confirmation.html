@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation de commande</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #000000;
+        }
+        .header {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .content {
+            padding: 40px 20px;
+        }
+        .success-badge {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        .greeting {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-align: center;
+        }
+        .text {
+            font-size: 16px;
+            color: #cccccc;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .order-box {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .order-label {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 5px;
+        }
+        .order-value {
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .order-items {
+            margin: 20px 0;
+        }
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        .item-name {
+            font-size: 16px;
+            color: #ffffff;
+        }
+        .item-price {
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 2px solid #1a1a1a;
+        }
+        .total-label {
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+        .total-amount {
+            font-size: 24px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+        .shipping-box {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+        .shipping-title {
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .shipping-address {
+            font-size: 14px;
+            color: #cccccc;
+            line-height: 1.8;
+        }
+        .button {
+            display: inline-block;
+            padding: 16px 32px;
+            background-color: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        .timeline {
+            margin: 30px 0;
+        }
+        .timeline-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 20px;
+        }
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            margin-right: 15px;
+            margin-top: 5px;
+            flex-shrink: 0;
+        }
+        .timeline-dot.active {
+            background-color: #22c55e;
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+        }
+        .timeline-content h4 {
+            font-size: 16px;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        .timeline-content p {
+            font-size: 14px;
+            color: #999999;
+        }
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+        }
+        .footer-text {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">Inutile Card</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="success-badge">
+                <div class="success-icon">✓</div>
+                <h1 class="greeting">Commande confirmée !</h1>
+                <p class="text">Merci pour votre commande {{customerName}}</p>
+            </div>
+
+            <!-- Order Details -->
+            <div class="order-box">
+                <div class="order-header">
+                    <div>
+                        <div class="order-label">Numéro de commande</div>
+                        <div class="order-value">{{orderNumber}}</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="order-label">Date</div>
+                        <div class="order-value">{{orderDate}}</div>
+                    </div>
+                </div>
+
+                <div class="order-items">
+                    {{#each items}}
+                    <div class="order-item">
+                        <div class="item-name">{{this.name}}</div>
+                        <div class="item-price">{{this.price}}€</div>
+                    </div>
+                    {{/each}}
+                </div>
+
+                <div class="order-total">
+                    <div class="total-label">Total</div>
+                    <div class="total-amount">{{total}}€</div>
+                </div>
+            </div>
+
+            <!-- Shipping Address -->
+            <div class="shipping-box">
+                <div class="shipping-title">📦 Adresse de livraison</div>
+                <div class="shipping-address">
+                    {{shippingAddress}}
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot active"></div>
+                    <div class="timeline-content">
+                        <h4>Commande confirmée</h4>
+                        <p>Nous avons bien reçu votre commande</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>En cours de traitement</h4>
+                        <p>Votre carte est en cours de création</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>Expédition</h4>
+                        <p>Livraison estimée sous 24-48h</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>Livraison</h4>
+                        <p>Profitez de votre carte !</p>
+                    </div>
+                </div>
+            </div>
+
+            <center>
+                <a href="{{trackOrderUrl}}" class="button">Suivre ma commande →</a>
+            </center>
+
+            <p class="text">
+                Vous recevrez un email avec le numéro de suivi dès que votre commande sera expédiée.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">
+                Besoin d'aide ? Contactez-nous à <a href="mailto:support@inutile.cards" style="color: #ffffff;">support@inutile.cards</a>
+            </p>
+            <p class="footer-text">
+                © 2025 Inutile Card. Tous droits réservés.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

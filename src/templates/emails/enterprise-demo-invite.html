@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation Démo Personnalisée</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #000000;
+        }
+        .header {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .header-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #3b82f6;
+            color: #ffffff;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .intro-text {
+            font-size: 16px;
+            color: #cccccc;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .demo-info-box {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border-radius: 16px;
+            padding: 35px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .demo-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        .demo-details {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .demo-detail-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: #e0e7ff;
+        }
+        .demo-detail-item:last-child {
+            margin-bottom: 0;
+        }
+        .demo-icon {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        .button-large {
+            display: inline-block;
+            padding: 18px 40px;
+            background-color: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .agenda {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .agenda-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .agenda-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .agenda-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .agenda-time {
+            width: 80px;
+            font-size: 14px;
+            color: #3b82f6;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .agenda-content h4 {
+            font-size: 16px;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        .agenda-content p {
+            font-size: 14px;
+            color: #999999;
+        }
+        .benefits {
+            margin: 30px 0;
+        }
+        .benefits-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .benefit-card {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        .benefit-card h4 {
+            font-size: 16px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .benefit-card p {
+            font-size: 14px;
+            color: #999999;
+        }
+        .prep-box {
+            background-color: #0a0a0a;
+            border-left: 4px solid #fbbf24;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        .prep-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fbbf24;
+            margin-bottom: 12px;
+        }
+        .prep-item {
+            font-size: 14px;
+            color: #cccccc;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .prep-item:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #fbbf24;
+        }
+        .cta-bottom {
+            text-align: center;
+            margin: 35px 0;
+            padding: 30px;
+            background-color: #0a0a0a;
+            border-radius: 16px;
+        }
+        .cta-bottom-text {
+            font-size: 16px;
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+        .signature {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #1a1a1a;
+        }
+        .signature-text {
+            font-size: 15px;
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+        .signature-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        .signature-title {
+            font-size: 14px;
+            color: #999999;
+        }
+        .footer {
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+        }
+        .footer-text {
+            font-size: 13px;
+            color: #666666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">Inutile Cards</div>
+            <div class="header-badge">DÉMO PERSONNALISÉE</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <h1 class="greeting">Votre démo est confirmée ! 🎉</h1>
+            
+            <p class="intro-text">
+                Merci {{contactName}} ! Je suis impatient de vous montrer comment Inutile Cards 
+                peut transformer le networking de {{companyName}}.
+            </p>
+
+            <!-- Demo Info -->
+            <div class="demo-info-box">
+                <div class="demo-title">Détails de la démo</div>
+                <div class="demo-details">
+                    <div class="demo-detail-item">
+                        <span class="demo-icon">📅</span>
+                        <span><strong>{{demoDate}}</strong></span>
+                    </div>
+                    <div class="demo-detail-item">
+                        <span class="demo-icon">⏰</span>
+                        <span><strong>{{demoTime}}</strong> ({{duration}} minutes)</span>
+                    </div>
+                    <div class="demo-detail-item">
+                        <span class="demo-icon">💻</span>
+                        <span>Visioconférence {{platform}}</span>
+                    </div>
+                </div>
+                <a href="{{meetingLink}}" class="button-large">Rejoindre la démo →</a>
+                <p style="font-size: 13px; color: #e0e7ff; margin-top: 15px;">
+                    Lien ajouté à votre calendrier · <a href="{{addToCalendarUrl}}" style="color: #ffffff; text-decoration: underline;">Ajouter au calendrier</a>
+                </p>
+            </div>
+
+            <!-- Agenda -->
+            <div class="agenda">
+                <div class="agenda-title">📋 Programme de la démo</div>
+                
+                <div class="agenda-item">
+                    <div class="agenda-time">0-5 min</div>
+                    <div class="agenda-content">
+                        <h4>Introduction & contexte</h4>
+                        <p>Comprenons vos besoins spécifiques et vos défis actuels</p>
+                    </div>
+                </div>
+
+                <div class="agenda-item">
+                    <div class="agenda-time">5-15 min</div>
+                    <div class="agenda-content">
+                        <h4>Démonstration live</h4>
+                        <p>Découvrez Inutile Cards en action : création, personnalisation, partage</p>
+                    </div>
+                </div>
+
+                <div class="agenda-item">
+                    <div class="agenda-time">15-25 min</div>
+                    <div class="agenda-content">
+                        <h4>Solution pour {{companyName}}</h4>
+                        <p>Dashboard entreprise, analytics, déploiement équipe, pricing personnalisé</p>
+                    </div>
+                </div>
+
+                <div class="agenda-item">
+                    <div class="agenda-time">25-30 min</div>
+                    <div class="agenda-content">
+                        <h4>Q&A & prochaines étapes</h4>
+                        <p>Vos questions, essai gratuit, et plan d'action</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefits -->
+            <div class="benefits">
+                <div class="benefits-title">Ce que vous allez découvrir</div>
+                
+                <div class="benefit-card">
+                    <h4>✨ Demo live personnalisée</h4>
+                    <p>Pas de présentation générique - tout sera adapté à {{companyName}} et votre secteur</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h4>💰 Analyse ROI</h4>
+                    <p>Calcul précis des économies vs cartes papier pour votre équipe de {{teamSize}} personnes</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h4>🎁 Offre exclusive</h4>
+                    <p>Proposition d'essai gratuit et conditions préférentielles early adopter</p>
+                </div>
+
+                <div class="benefit-card">
+                    <h4>📊 Success stories</h4>
+                    <p>Exemples concrets d'entreprises similaires dans {{industry}}</p>
+                </div>
+            </div>
+
+            <!-- Prep Box -->
+            <div class="prep-box">
+                <div class="prep-title">💡 Pour profiter au maximum de la démo</div>
+                <div class="prep-item">Préparez vos questions sur le déploiement en entreprise</div>
+                <div class="prep-item">Pensez aux défis actuels de votre équipe avec les cartes papier</div>
+                <div class="prep-item">Invitez d'autres décideurs si pertinent (RH, Marketing, IT)</div>
+                <div class="prep-item">Notez le nombre de collaborateurs à équiper</div>
+            </div>
+
+            <!-- CTA Bottom -->
+            <div class="cta-bottom">
+                <p class="cta-bottom-text">
+                    Besoin de déplacer le RDV ?
+                </p>
+                <a href="{{rescheduleUrl}}" style="color: #3b82f6; text-decoration: underline; font-weight: 600;">
+                    Modifier le créneau
+                </a>
+            </div>
+
+            <!-- Signature -->
+            <div class="signature">
+                <p class="signature-text">
+                    À très bientôt {{contactName}} ! N'hésitez pas si vous avez la moindre question avant notre appel.
+                </p>
+                <div class="signature-name">{{senderName}}</div>
+                <div class="signature-title">{{senderTitle}} - Inutile Cards</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">
+                © 2025 Inutile Cards. Tous droits réservés.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

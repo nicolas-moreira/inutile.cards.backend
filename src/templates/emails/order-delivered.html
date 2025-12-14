@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre commande est livrée</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #000000;
+        }
+        .header {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .content {
+            padding: 40px 20px;
+        }
+        .success-badge {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 40px rgba(34, 197, 94, 0.3);
+        }
+        .greeting {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-align: center;
+        }
+        .text {
+            font-size: 16px;
+            color: #cccccc;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .celebration-box {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .celebration-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+        .celebration-text {
+            font-size: 16px;
+            color: #dcfce7;
+        }
+        .setup-guide {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .guide-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .step {
+            display: flex;
+            align-items: start;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .step:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background-color: #ffffff;
+            color: #000000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+            margin-right: 15px;
+        }
+        .step-content h3 {
+            font-size: 16px;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        .step-content p {
+            font-size: 14px;
+            color: #999999;
+        }
+        .button {
+            display: inline-block;
+            padding: 16px 32px;
+            background-color: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        .button-secondary {
+            display: inline-block;
+            padding: 16px 32px;
+            background-color: transparent;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            border: 2px solid #ffffff;
+            margin: 10px 5px;
+        }
+        .tips {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+        .tips-title {
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .tip-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+        .tip-icon {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        .tip-text {
+            font-size: 14px;
+            color: #cccccc;
+        }
+        .review-box {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .review-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 10px;
+        }
+        .review-text {
+            font-size: 14px;
+            color: #451a03;
+            margin-bottom: 20px;
+        }
+        .stars {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+        }
+        .footer-text {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">Inutile Card</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="success-badge">
+                <div class="success-icon">🎉</div>
+                <h1 class="greeting">C'est arrivé {{customerName}} !</h1>
+                <p class="text">Votre commande a été livrée avec succès</p>
+            </div>
+
+            <div class="celebration-box">
+                <div class="celebration-title">✨ Bienvenue dans le futur du networking ✨</div>
+                <p class="celebration-text">
+                    Votre carte NFC Inutile Card est entre vos mains. Il est temps de révolutionner votre façon de networker !
+                </p>
+            </div>
+
+            <!-- Setup Guide -->
+            <div class="setup-guide">
+                <h2 class="guide-title">🚀 Comment utiliser votre carte</h2>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Activez votre carte</h3>
+                        <p>Connectez-vous à votre dashboard et activez votre carte avec le code fourni</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Personnalisez votre profil</h3>
+                        <p>Ajoutez vos informations, liens et réseaux sociaux</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Testez le tap</h3>
+                        <p>Approchez votre carte d'un smartphone pour vérifier que tout fonctionne</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Commencez à networker</h3>
+                        <p>Partagez votre profil en un tap et impressionnez vos contacts !</p>
+                    </div>
+                </div>
+            </div>
+
+            <center>
+                <a href="{{dashboardUrl}}" class="button">Accéder à mon dashboard →</a>
+                <a href="{{videoGuideUrl}}" class="button-secondary">Voir le tutoriel vidéo</a>
+            </center>
+
+            <!-- Tips -->
+            <div class="tips">
+                <div class="tips-title">💡 Conseils Pro</div>
+                <div class="tip-item">
+                    <span class="tip-icon">✨</span>
+                    <span class="tip-text">Utilisez une photo professionnelle pour votre profil</span>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">🔗</span>
+                    <span class="tip-text">Ajoutez tous vos liens importants (LinkedIn, portfolio, calendrier...)</span>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">📊</span>
+                    <span class="tip-text">Consultez vos analytics pour suivre vos performances</span>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">🎨</span>
+                    <span class="tip-text">Personnalisez les couleurs pour qu'elles correspondent à votre marque</span>
+                </div>
+            </div>
+
+            <!-- Review Request -->
+            <div class="review-box">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <h3 class="review-title">Vous aimez votre carte ?</h3>
+                <p class="review-text">
+                    Votre avis compte ! Partagez votre expérience pour aider d'autres professionnels
+                </p>
+                <a href="{{reviewUrl}}" style="display: inline-block; padding: 12px 24px; background-color: #000000; color: #ffffff; text-decoration: none; border-radius: 10px; font-weight: 600;">
+                    Laisser un avis
+                </a>
+            </div>
+
+            <p class="text">
+                Besoin d'aide pour configurer votre carte ? Notre équipe support est là pour vous !
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">
+                Support : <a href="mailto:support@inutile.cards" style="color: #ffffff;">support@inutile.cards</a>
+            </p>
+            <p class="footer-text">
+                © 2025 Inutile Card. Tous droits réservés.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

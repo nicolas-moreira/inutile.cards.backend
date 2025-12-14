@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter Inutile Card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #000000;
+        }
+        .header {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .issue-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #ffffff;
+            color: #000000;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .content {
+            padding: 40px 20px;
+        }
+        .hero-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+            border-radius: 16px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+        .title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        .subtitle {
+            font-size: 18px;
+            color: #999999;
+            margin-bottom: 30px;
+        }
+        .text {
+            font-size: 16px;
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+        .section {
+            margin: 40px 0;
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        .article-card {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: transform 0.2s;
+        }
+        .article-card:hover {
+            transform: translateY(-2px);
+        }
+        .article-category {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: #1a1a1a;
+            color: #999999;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .article-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .article-excerpt {
+            font-size: 14px;
+            color: #999999;
+            margin-bottom: 15px;
+        }
+        .article-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .stat-card {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #666666;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        .cta-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+        .cta-text {
+            font-size: 16px;
+            color: #e0e7ff;
+            margin-bottom: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 16px 32px;
+            background-color: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+        }
+        .footer-text {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+        .social-links {
+            margin: 20px 0;
+        }
+        .social-link {
+            display: inline-block;
+            margin: 0 10px;
+            color: #999999;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">Inutile Card</div>
+            <div class="issue-badge">NEWSLETTER #{{issueNumber}}</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Hero -->
+            <div class="hero-image">
+                ✨
+            </div>
+
+            <h1 class="title">{{newsletterTitle}}</h1>
+            <p class="subtitle">{{date}}</p>
+
+            <p class="text">
+                Bonjour {{firstName}},
+            </p>
+
+            <p class="text">
+                {{introText}}
+            </p>
+
+            <!-- Stats Section -->
+            <div class="section">
+                <h2 class="section-title">📊 Ce mois en chiffres</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">{{stat1Number}}</div>
+                        <div class="stat-label">{{stat1Label}}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">{{stat2Number}}</div>
+                        <div class="stat-label">{{stat2Label}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Articles Section -->
+            <div class="section">
+                <h2 class="section-title">📰 Nos derniers articles</h2>
+                
+                {{#each articles}}
+                <div class="article-card">
+                    <span class="article-category">{{this.category}}</span>
+                    <h3 class="article-title">{{this.title}}</h3>
+                    <p class="article-excerpt">{{this.excerpt}}</p>
+                    <a href="{{this.url}}" class="article-link">Lire l'article →</a>
+                </div>
+                {{/each}}
+            </div>
+
+            <!-- New Features -->
+            <div class="section">
+                <h2 class="section-title">🚀 Nouveautés</h2>
+                <div class="article-card">
+                    <h3 class="article-title">{{featureTitle}}</h3>
+                    <p class="article-excerpt">{{featureDescription}}</p>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-box">
+                <h3 class="cta-title">Pas encore de carte ?</h3>
+                <p class="cta-text">
+                    Rejoignez les milliers de professionnels qui ont déjà révolutionné leur networking
+                </p>
+                <a href="{{ctaUrl}}" class="button">Créer ma carte maintenant</a>
+            </div>
+
+            <p class="text">
+                À très bientôt ! ✨
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="social-links">
+                <a href="{{twitterUrl}}" class="social-link">Twitter</a>
+                <a href="{{linkedinUrl}}" class="social-link">LinkedIn</a>
+                <a href="{{instagramUrl}}" class="social-link">Instagram</a>
+            </div>
+            <p class="footer-text">
+                © 2025 Inutile Card. Tous droits réservés.
+            </p>
+            <p class="footer-text">
+                <a href="{{unsubscribeUrl}}" style="color: #666666; text-decoration: underline;">Se désabonner</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre panier vous attend (+ cadeau)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #000000;
+        }
+        .header {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .content {
+            padding: 40px 20px;
+        }
+        .icon-badge {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        .greeting {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-align: center;
+        }
+        .text {
+            font-size: 16px;
+            color: #cccccc;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .discount-box {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            border-radius: 16px;
+            padding: 35px;
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .discount-badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background-color: #fbbf24;
+            color: #000000;
+            padding: 8px 40px;
+            font-weight: 700;
+            font-size: 14px;
+            transform: rotate(45deg);
+        }
+        .discount-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+        .discount-code-box {
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 2px dashed #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .discount-code-label {
+            font-size: 14px;
+            color: #dcfce7;
+            margin-bottom: 8px;
+        }
+        .discount-code {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 4px;
+        }
+        .discount-expiry {
+            font-size: 13px;
+            color: #dcfce7;
+            margin-top: 15px;
+        }
+        .cart-summary {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .cart-item-simple {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .cart-item-simple:last-child {
+            border-bottom: none;
+        }
+        .item-name-simple {
+            font-size: 15px;
+            color: #ffffff;
+        }
+        .item-price-simple {
+            font-size: 15px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .savings-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            color: #22c55e;
+            font-weight: 600;
+        }
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 2px solid #2a2a2a;
+        }
+        .total-label {
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+        .total-amount {
+            font-size: 28px;
+            color: #ffffff;
+            font-weight: 700;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: #666666;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        .button {
+            display: inline-block;
+            padding: 18px 40px;
+            background-color: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        .urgency-box {
+            background-color: #451a03;
+            border: 2px solid #78350f;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        .urgency-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fbbf24;
+            margin-bottom: 8px;
+        }
+        .urgency-text {
+            font-size: 14px;
+            color: #fde68a;
+        }
+        .testimonial {
+            background-color: #0a0a0a;
+            border-left: 4px solid #8b5cf6;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        .testimonial-text {
+            font-size: 15px;
+            color: #cccccc;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        .testimonial-author {
+            font-size: 14px;
+            color: #999999;
+            font-weight: 600;
+        }
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+        }
+        .footer-text {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">Inutile Cards</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="icon-badge">
+                <div class="icon">🎁</div>
+                <h1 class="greeting">On a un cadeau pour vous !</h1>
+            </div>
+
+            <p class="text">
+                Bonjour {{firstName}},
+            </p>
+
+            <p class="text">
+                Votre panier vous attend toujours... et pour vous remercier de votre intérêt, 
+                voici un petit quelque chose de notre part :
+            </p>
+
+            <!-- Discount Box -->
+            <div class="discount-box">
+                <div class="discount-badge">EXCLUSIF</div>
+                <div class="discount-title">{{discountPercentage}}% de réduction</div>
+                <p style="color: #dcfce7; font-size: 16px; margin-bottom: 20px;">
+                    Valable uniquement sur votre panier actuel
+                </p>
+                
+                <div class="discount-code-box">
+                    <div class="discount-code-label">VOTRE CODE PROMO</div>
+                    <div class="discount-code">{{discountCode}}</div>
+                </div>
+
+                <p class="discount-expiry">
+                    ⏰ Expire dans {{expiryHours}} heures
+                </p>
+            </div>
+
+            <!-- Cart Summary with Discount -->
+            <div class="cart-summary">
+                {{#each items}}
+                <div class="cart-item-simple">
+                    <div class="item-name-simple">{{this.name}}</div>
+                    <div class="item-price-simple">{{this.price}}€</div>
+                </div>
+                {{/each}}
+
+                <div class="savings-row">
+                    <div>Code promo {{discountCode}}</div>
+                    <div>-{{discountAmount}}€</div>
+                </div>
+
+                <div class="total-row">
+                    <div class="total-label">Total</div>
+                    <div>
+                        <span class="old-price">{{originalTotal}}€</span>
+                        <span class="total-amount">{{discountedTotal}}€</span>
+                    </div>
+                </div>
+            </div>
+
+            <center>
+                <a href="{{checkoutUrl}}" class="button">Profiter de l'offre →</a>
+            </center>
+
+            <p style="text-align: center; font-size: 14px; color: #999999; margin: 15px 0;">
+                Code automatiquement appliqué
+            </p>
+
+            <!-- Urgency -->
+            <div class="urgency-box">
+                <div class="urgency-title">⏰ Offre limitée</div>
+                <div class="urgency-text">
+                    Cette réduction expire dans {{expiryHours}} heures. 
+                    Après, elle ne sera plus disponible.
+                </div>
+            </div>
+
+            <!-- Testimonial -->
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    "J'ai hésité pendant 2 jours avant de commander. Grosse erreur ! 
+                    La carte est incroyable, je l'utilise tous les jours et je regrette 
+                    de ne pas l'avoir pris plus tôt."
+                </div>
+                <div class="testimonial-author">— Sophie L., Consultante Marketing</div>
+            </div>
+
+            <p class="text">
+                Des questions ? Notre équipe est là pour vous aider !<br>
+                <a href="mailto:{{supportEmail}}" style="color: #3b82f6; text-decoration: none;">
+                    {{supportEmail}}
+                </a>
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">
+                © 2025 Inutile Cards. Tous droits réservés.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+

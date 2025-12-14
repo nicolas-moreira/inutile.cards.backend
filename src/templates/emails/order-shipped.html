@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre commande a été expédiée</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #000000;
+        }
+        .header {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .content {
+            padding: 40px 20px;
+        }
+        .success-badge {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        .greeting {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-align: center;
+        }
+        .text {
+            font-size: 16px;
+            color: #cccccc;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .tracking-box {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0c4a6e 100%);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .tracking-label {
+            font-size: 14px;
+            color: #93c5fd;
+            margin-bottom: 10px;
+        }
+        .tracking-number {
+            font-size: 28px;
+            color: #ffffff;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 16px 32px;
+            background-color: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .order-summary {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .order-label {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 5px;
+        }
+        .order-value {
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .delivery-info {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+        .delivery-title {
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .delivery-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .delivery-item:last-child {
+            border-bottom: none;
+        }
+        .delivery-label {
+            font-size: 14px;
+            color: #999999;
+        }
+        .delivery-value {
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .tips {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+        .tips-title {
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .tip-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+        .tip-icon {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        .tip-text {
+            font-size: 14px;
+            color: #cccccc;
+        }
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+        }
+        .footer-text {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">Inutile Card</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="success-badge">
+                <div class="success-icon">🚀</div>
+                <h1 class="greeting">C'est parti {{customerName}} !</h1>
+                <p class="text">Votre commande est en route</p>
+            </div>
+
+            <!-- Tracking Box -->
+            <div class="tracking-box">
+                <div class="tracking-label">NUMÉRO DE SUIVI</div>
+                <div class="tracking-number">{{trackingNumber}}</div>
+                <a href="{{trackingUrl}}" class="button">Suivre mon colis 📦</a>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <div class="order-header">
+                    <div>
+                        <div class="order-label">Numéro de commande</div>
+                        <div class="order-value">{{orderNumber}}</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="order-label">Date d'expédition</div>
+                        <div class="order-value">{{shippedDate}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delivery Info -->
+            <div class="delivery-info">
+                <div class="delivery-title">📍 Informations de livraison</div>
+                <div class="delivery-item">
+                    <span class="delivery-label">Transporteur</span>
+                    <span class="delivery-value">{{carrier}}</span>
+                </div>
+                <div class="delivery-item">
+                    <span class="delivery-label">Livraison estimée</span>
+                    <span class="delivery-value">{{estimatedDelivery}}</span>
+                </div>
+                <div class="delivery-item">
+                    <span class="delivery-label">Adresse</span>
+                    <span class="delivery-value">{{shippingAddress}}</span>
+                </div>
+            </div>
+
+            <!-- Tips -->
+            <div class="tips">
+                <div class="tips-title">💡 Pendant que vous attendez</div>
+                <div class="tip-item">
+                    <span class="tip-icon">✨</span>
+                    <span class="tip-text">Personnalisez votre profil web depuis votre dashboard</span>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">🔗</span>
+                    <span class="tip-text">Ajoutez vos liens et réseaux sociaux</span>
+                </div>
+                <div class="tip-item">
+                    <span class="tip-icon">📊</span>
+                    <span class="tip-text">Découvrez les analytics pour suivre vos performances</span>
+                </div>
+            </div>
+
+            <p class="text">
+                Vous recevrez une notification dès que votre colis sera livré.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">
+                Besoin d'aide ? Contactez-nous à <a href="mailto:support@inutile.cards" style="color: #ffffff;">support@inutile.cards</a>
+            </p>
+            <p class="footer-text">
+                © 2025 Inutile Card. Tous droits réservés.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
