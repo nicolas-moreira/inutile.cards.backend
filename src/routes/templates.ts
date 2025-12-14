@@ -56,7 +56,7 @@ export async function templateRoutes(fastify: FastifyInstance): Promise<void> {
   });
 
   // Apply template to profile
-  fastify.post('/:id/apply', { preHandler: [authenticateToken] }, async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
+  fastify.post<{ Params: { id: string } }>('/:id/apply', { preHandler: [authenticateToken] }, async (request, reply) => {
     try {
       const { id } = request.params;
       const jwtPayload = request.user as JWTPayload;
@@ -103,7 +103,7 @@ export async function templateRoutes(fastify: FastifyInstance): Promise<void> {
   });
 
   // Admin: Update template
-  fastify.put('/:id', { preHandler: [authenticateToken, requireAdmin] }, async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
+  fastify.put<{ Params: { id: string } }>('/:id', { preHandler: [authenticateToken, requireAdmin] }, async (request, reply) => {
     try {
       const { id } = request.params;
       const body = updateTemplateSchema.parse(request.body);
@@ -124,7 +124,7 @@ export async function templateRoutes(fastify: FastifyInstance): Promise<void> {
   });
 
   // Admin: Delete template (soft delete)
-  fastify.delete('/:id', { preHandler: [authenticateToken, requireAdmin] }, async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
+  fastify.delete<{ Params: { id: string } }>('/:id', { preHandler: [authenticateToken, requireAdmin] }, async (request, reply) => {
     try {
       const { id } = request.params;
       

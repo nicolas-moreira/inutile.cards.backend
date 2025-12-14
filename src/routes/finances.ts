@@ -100,7 +100,7 @@ export async function financeRoutes(fastify: FastifyInstance): Promise<void> {
   });
 
   // Remove payment card
-  fastify.delete('/payment-cards/:cardId', { preHandler: [authenticateToken] }, async (request: FastifyRequest<{ Params: { cardId: string } }>, reply: FastifyReply) => {
+  fastify.delete<{ Params: { cardId: string } }>('/payment-cards/:cardId', { preHandler: [authenticateToken] }, async (request, reply) => {
     try {
       const jwtPayload = request.user as JWTPayload;
       const { cardId } = request.params;
@@ -133,7 +133,7 @@ export async function financeRoutes(fastify: FastifyInstance): Promise<void> {
   });
 
   // Set default payment card
-  fastify.put('/payment-cards/:cardId/default', { preHandler: [authenticateToken] }, async (request: FastifyRequest<{ Params: { cardId: string } }>, reply: FastifyReply) => {
+  fastify.put<{ Params: { cardId: string } }>('/payment-cards/:cardId/default', { preHandler: [authenticateToken] }, async (request, reply) => {
     try {
       const jwtPayload = request.user as JWTPayload;
       const { cardId } = request.params;
@@ -176,7 +176,7 @@ export async function financeRoutes(fastify: FastifyInstance): Promise<void> {
   });
 
   // Get bills
-  fastify.get('/bills', { preHandler: [authenticateToken] }, async (request: FastifyRequest<{ Querystring: { page?: string; limit?: string } }>, reply: FastifyReply) => {
+  fastify.get<{ Querystring: { page?: string; limit?: string } }>('/bills', { preHandler: [authenticateToken] }, async (request, reply) => {
     try {
       const jwtPayload = request.user as JWTPayload;
       const page = parseInt(request.query.page || '1', 10);
@@ -240,7 +240,7 @@ export async function financeRoutes(fastify: FastifyInstance): Promise<void> {
   });
 
   // Admin: Update physical card status
-  fastify.put('/physical-cards/:cardId', { preHandler: [authenticateToken, requireAdmin] }, async (request: FastifyRequest<{ Params: { cardId: string } }>, reply: FastifyReply) => {
+  fastify.put<{ Params: { cardId: string } }>('/physical-cards/:cardId', { preHandler: [authenticateToken, requireAdmin] }, async (request, reply) => {
     try {
       const { cardId } = request.params;
       const body = updatePhysicalCardSchema.parse(request.body);

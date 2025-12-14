@@ -219,7 +219,7 @@ export async function profileRoutes(fastify: FastifyInstance): Promise<void> {
   });
 
   // Update link
-  fastify.put('/me/links/:linkId', { preHandler: [authenticateToken] }, async (request: FastifyRequest<{ Params: { linkId: string } }>, reply: FastifyReply) => {
+  fastify.put<{ Params: { linkId: string } }>('/me/links/:linkId', { preHandler: [authenticateToken] }, async (request, reply) => {
     try {
       const jwtPayload = request.user as JWTPayload;
       const { linkId } = request.params;
@@ -249,7 +249,7 @@ export async function profileRoutes(fastify: FastifyInstance): Promise<void> {
   });
 
   // Delete link
-  fastify.delete('/me/links/:linkId', { preHandler: [authenticateToken] }, async (request: FastifyRequest<{ Params: { linkId: string } }>, reply: FastifyReply) => {
+  fastify.delete<{ Params: { linkId: string } }>('/me/links/:linkId', { preHandler: [authenticateToken] }, async (request, reply) => {
     try {
       const jwtPayload = request.user as JWTPayload;
       const { linkId } = request.params;

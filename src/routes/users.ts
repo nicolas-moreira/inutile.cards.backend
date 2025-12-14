@@ -100,7 +100,7 @@ export async function userRoutes(fastify: FastifyInstance): Promise<void> {
   });
 
   // Admin: List all users
-  fastify.get('/', { preHandler: [authenticateToken, requireAdmin] }, async (request: FastifyRequest<{ Querystring: { page?: string; limit?: string; search?: string } }>, reply: FastifyReply) => {
+  fastify.get<{ Querystring: { page?: string; limit?: string; search?: string } }>('/', { preHandler: [authenticateToken, requireAdmin] }, async (request, reply) => {
     try {
       const page = parseInt(request.query.page || '1', 10);
       const limit = parseInt(request.query.limit || '20', 10);
@@ -133,7 +133,7 @@ export async function userRoutes(fastify: FastifyInstance): Promise<void> {
   });
 
   // Admin: Get user by ID
-  fastify.get('/:userId', { preHandler: [authenticateToken, requireAdmin] }, async (request: FastifyRequest<{ Params: { userId: string } }>, reply: FastifyReply) => {
+  fastify.get<{ Params: { userId: string } }>('/:userId', { preHandler: [authenticateToken, requireAdmin] }, async (request, reply) => {
     try {
       const { userId } = request.params;
       
@@ -164,7 +164,7 @@ export async function userRoutes(fastify: FastifyInstance): Promise<void> {
   });
 
   // Admin: Update user
-  fastify.put('/:userId', { preHandler: [authenticateToken, requireAdmin] }, async (request: FastifyRequest<{ Params: { userId: string } }>, reply: FastifyReply) => {
+  fastify.put<{ Params: { userId: string } }>('/:userId', { preHandler: [authenticateToken, requireAdmin] }, async (request, reply) => {
     try {
       const { userId } = request.params;
       const body = adminUpdateUserSchema.parse(request.body);
@@ -198,7 +198,7 @@ export async function userRoutes(fastify: FastifyInstance): Promise<void> {
   });
 
   // Admin: Delete user (soft delete)
-  fastify.delete('/:userId', { preHandler: [authenticateToken, requireAdmin] }, async (request: FastifyRequest<{ Params: { userId: string } }>, reply: FastifyReply) => {
+  fastify.delete<{ Params: { userId: string } }>('/:userId', { preHandler: [authenticateToken, requireAdmin] }, async (request, reply) => {
     try {
       const { userId } = request.params;
       

@@ -1,6 +1,7 @@
 {
   "name": "inutilecards-backend",
   "version": "1.0.0",
+  "type": "module",
   "description": "Backend API for Inutile Cards - Profile/Linktree service",
   "main": "dist/index.js",
   "scripts": {

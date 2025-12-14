@@ -36,9 +36,10 @@ export async function adminRoutes(fastify: FastifyInstance) {
         lowStock: lowStockCards.length,
       };
 
-      return successResponse(reply, stats);
+      return reply.send(successResponse(stats));
     } catch (error) {
-      return errorResponse(reply, 'Erreur lors de la récupération des statistiques', error);
+      console.error('Erreur stats:', error);
+      return reply.status(500).send(errorResponse('Erreur lors de la récupération des statistiques'));
     }
   });
 
@@ -50,9 +51,10 @@ export async function adminRoutes(fastify: FastifyInstance) {
   fastify.get('/orders', async (request: FastifyRequest, reply: FastifyReply) => {
     try {
       const orders = await Order.find().sort({ createdAt: -1 });
-      return successResponse(reply, orders);
+      return reply.send(successResponse(orders));
     } catch (error) {
-      return errorResponse(reply, 'Erreur lors de la récupération des commandes', error);
+      console.error('Erreur orders:', error);
+      return reply.status(500).send(errorResponse('Erreur lors de la récupération des commandes'));
     }
   });
 
@@ -63,11 +65,12 @@ export async function adminRoutes(fastify: FastifyInstance) {
       try {
         const order = await Order.findById(request.params.id);
         if (!order) {
-          return errorResponse(reply, 'Commande non trouvée', null, 404);
+          return reply.status(404).send(errorResponse('Commande non trouvée'));
         }
-        return successResponse(reply, order);
+        return reply.send(successResponse(order));
       } catch (error) {
-        return errorResponse(reply, 'Erreur lors de la récupération de la commande', error);
+        console.error('Erreur order:', error);
+        return reply.status(500).send(errorResponse('Erreur lors de la récupération de la commande'));
       }
     }
   );
@@ -88,12 +91,13 @@ export async function adminRoutes(fastify: FastifyInstance) {
         );
 
         if (!order) {
-          return errorResponse(reply, 'Commande non trouvée', null, 404);
+          return reply.status(404).send(errorResponse('Commande non trouvée'));
         }
 
-        return successResponse(reply, order);
+        return reply.send(successResponse(order));
       } catch (error) {
-        return errorResponse(reply, 'Erreur lors de la mise à jour de la commande', error);
+        console.error('Erreur update order:', error);
+        return reply.status(500).send(errorResponse('Erreur lors de la mise à jour de la commande'));
       }
     }
   );
@@ -105,11 +109,12 @@ export async function adminRoutes(fastify: FastifyInstance) {
       try {
         const order = await Order.findByIdAndDelete(request.params.id);
         if (!order) {
-          return errorResponse(reply, 'Commande non trouvée', null, 404);
+          return reply.status(404).send(errorResponse('Commande non trouvée'));
         }
-        return successResponse(reply, { message: 'Commande supprimée avec succès' });
+        return reply.send(successResponse({ message: 'Commande supprimée avec succès' }));
       } catch (error) {
-        return errorResponse(reply, 'Erreur lors de la suppression de la commande', error);
+        console.error('Erreur delete order:', error);
+        return reply.status(500).send(errorResponse('Erreur lors de la suppression de la commande'));
       }
     }
   );
@@ -122,9 +127,10 @@ export async function adminRoutes(fastify: FastifyInstance) {
   fastify.get('/cards', async (request: FastifyRequest, reply: FastifyReply) => {
     try {
       const cards = await ProductCard.find().sort({ createdAt: -1 });
-      return successResponse(reply, cards);
+      return reply.send(successResponse(cards));
     } catch (error) {
-      return errorResponse(reply, 'Erreur lors de la récupération des cartes', error);
+      console.error('Erreur cards:', error);
+      return reply.status(500).send(errorResponse('Erreur lors de la récupération des cartes'));
     }
   });
 
@@ -158,9 +164,10 @@ export async function adminRoutes(fastify: FastifyInstance) {
       try {
         const card = new ProductCard(request.body);
         await card.save();
-        return successResponse(reply, card, 'Carte créée avec succès', 201);
+        return reply.status(201).send(successResponse(card, 'Carte créée avec succès'));
       } catch (error) {
-        return errorResponse(reply, 'Erreur lors de la création de la carte', error);
+        console.error('Erreur create card:', error);
+        return reply.status(500).send(errorResponse('Erreur lors de la création de la carte'));
       }
     }
   );
@@ -201,12 +208,13 @@ export async function adminRoutes(fastify: FastifyInstance) {
         });
 
         if (!card) {
-          return errorResponse(reply, 'Carte non trouvée', null, 404);
+          return reply.status(404).send(errorResponse('Carte non trouvée'));
         }
 
-        return successResponse(reply, card);
+        return reply.send(successResponse(card));
       } catch (error) {
-        return errorResponse(reply, 'Erreur lors de la mise à jour de la carte', error);
+        console.error('Erreur update card:', error);
+        return reply.status(500).send(errorResponse('Erreur lors de la mise à jour de la carte'));
       }
     }
   );
@@ -218,15 +226,16 @@ export async function adminRoutes(fastify: FastifyInstance) {
       try {
         const card = await ProductCard.findById(request.params.id);
         if (!card) {
-          return errorResponse(reply, 'Carte non trouvée', null, 404);
+          return reply.status(404).send(errorResponse('Carte non trouvée'));
         }
 
         card.active = !card.active;
         await card.save();
 
-        return successResponse(reply, card);
+        return reply.send(successResponse(card));
       } catch (error) {
-        return errorResponse(reply, 'Erreur lors de la mise à jour de la carte', error);
+        console.error('Erreur toggle card:', error);
+        return reply.status(500).send(errorResponse('Erreur lors de la mise à jour de la carte'));
       }
     }
   );
@@ -238,11 +247,12 @@ export async function adminRoutes(fastify: FastifyInstance) {
       try {
         const card = await ProductCard.findByIdAndDelete(request.params.id);
         if (!card) {
-          return errorResponse(reply, 'Carte non trouvée', null, 404);
+          return reply.status(404).send(errorResponse('Carte non trouvée'));
         }
-        return successResponse(reply, { message: 'Carte supprimée avec succès' });
+        return reply.send(successResponse({ message: 'Carte supprimée avec succès' }));
       } catch (error) {
-        return errorResponse(reply, 'Erreur lors de la suppression de la carte', error);
+        console.error('Erreur delete card:', error);
+        return reply.status(500).send(errorResponse('Erreur lors de la suppression de la carte'));
       }
     }
   );
@@ -257,9 +267,10 @@ export async function adminRoutes(fastify: FastifyInstance) {
       const users = await User.find()
         .select('-password -resetPasswordToken -resetPasswordExpires')
         .sort({ createdAt: -1 });
-      return successResponse(reply, users);
+      return reply.send(successResponse(users));
     } catch (error) {
-      return errorResponse(reply, 'Erreur lors de la récupération des utilisateurs', error);
+      console.error('Erreur users:', error);
+      return reply.status(500).send(errorResponse('Erreur lors de la récupération des utilisateurs'));
     }
   });
 
@@ -279,12 +290,13 @@ export async function adminRoutes(fastify: FastifyInstance) {
         );
 
         if (!user) {
-          return errorResponse(reply, 'Utilisateur non trouvé', null, 404);
+          return reply.status(404).send(errorResponse('Utilisateur non trouvé'));
         }
 
-        return successResponse(reply, user);
+        return reply.send(successResponse(user));
       } catch (error) {
-        return errorResponse(reply, 'Erreur lors de la mise à jour du rôle', error);
+        console.error('Erreur update user role:', error);
+        return reply.status(500).send(errorResponse('Erreur lors de la mise à jour du rôle'));
       }
     }
   );
@@ -322,12 +334,13 @@ export async function adminRoutes(fastify: FastifyInstance) {
         });
 
         if (!user) {
-          return errorResponse(reply, 'Utilisateur non trouvé', null, 404);
+          return reply.status(404).send(errorResponse('Utilisateur non trouvé'));
         }
 
-        return successResponse(reply, user);
+        return reply.send(successResponse(user));
       } catch (error) {
-        return errorResponse(reply, "Erreur lors de la mise à jour de l'utilisateur", error);
+        console.error('Erreur update user:', error);
+        return reply.status(500).send(errorResponse("Erreur lors de la mise à jour de l'utilisateur"));
       }
     }
   );
@@ -339,15 +352,16 @@ export async function adminRoutes(fastify: FastifyInstance) {
       try {
         const user = await User.findByIdAndDelete(request.params.id);
         if (!user) {
-          return errorResponse(reply, 'Utilisateur non trouvé', null, 404);
+          return reply.status(404).send(errorResponse('Utilisateur non trouvé'));
         }
 
         // Also delete user's profile if exists
         await Profile.deleteOne({ userId: request.params.id });
 
-        return successResponse(reply, { message: 'Utilisateur supprimé avec succès' });
+        return reply.send(successResponse({ message: 'Utilisateur supprimé avec succès' }));
       } catch (error) {
-        return errorResponse(reply, "Erreur lors de la suppression de l'utilisateur", error);
+        console.error('Erreur delete user:', error);
+        return reply.status(500).send(errorResponse("Erreur lors de la suppression de l'utilisateur"));
       }
     }
   );
@@ -369,9 +383,10 @@ export async function adminRoutes(fastify: FastifyInstance) {
         clicks: Math.floor(Math.random() * 1000), // À remplacer par vraies stats
       }));
 
-      return successResponse(reply, enrichedProfiles);
+      return reply.send(successResponse(enrichedProfiles));
     } catch (error) {
-      return errorResponse(reply, 'Erreur lors de la récupération des profils', error);
+      console.error('Erreur profiles:', error);
+      return reply.status(500).send(errorResponse('Erreur lors de la récupération des profils'));
     }
   });
 
@@ -382,15 +397,16 @@ export async function adminRoutes(fastify: FastifyInstance) {
       try {
         const profile = await Profile.findById(request.params.id);
         if (!profile) {
-          return errorResponse(reply, 'Profil non trouvé', null, 404);
+          return reply.status(404).send(errorResponse('Profil non trouvé'));
         }
 
         profile.isPublic = !profile.isPublic;
         await profile.save();
 
-        return successResponse(reply, profile);
+        return reply.send(successResponse(profile));
       } catch (error) {
-        return errorResponse(reply, 'Erreur lors de la mise à jour du profil', error);
+        console.error('Erreur toggle profile:', error);
+        return reply.status(500).send(errorResponse('Erreur lors de la mise à jour du profil'));
       }
     }
   );
@@ -425,12 +441,13 @@ export async function adminRoutes(fastify: FastifyInstance) {
         });
 
         if (!profile) {
-          return errorResponse(reply, 'Profil non trouvé', null, 404);
+          return reply.status(404).send(errorResponse('Profil non trouvé'));
         }
 
-        return successResponse(reply, profile);
+        return reply.send(successResponse(profile));
       } catch (error) {
-        return errorResponse(reply, 'Erreur lors de la mise à jour du profil', error);
+        console.error('Erreur update profile:', error);
+        return reply.status(500).send(errorResponse('Erreur lors de la mise à jour du profil'));
       }
     }
   );
@@ -442,11 +459,12 @@ export async function adminRoutes(fastify: FastifyInstance) {
       try {
         const profile = await Profile.findByIdAndDelete(request.params.id);
         if (!profile) {
-          return errorResponse(reply, 'Profil non trouvé', null, 404);
+          return reply.status(404).send(errorResponse('Profil non trouvé'));
         }
-        return successResponse(reply, { message: 'Profil supprimé avec succès' });
+        return reply.send(successResponse({ message: 'Profil supprimé avec succès' }));
       } catch (error) {
-        return errorResponse(reply, 'Erreur lors de la suppression du profil', error);
+        console.error('Erreur delete profile:', error);
+        return reply.status(500).send(errorResponse('Erreur lors de la suppression du profil'));
       }
     }
   );
@@ -459,9 +477,10 @@ export async function adminRoutes(fastify: FastifyInstance) {
   fastify.get('/client-cards', async (request: FastifyRequest, reply: FastifyReply) => {
     try {
       const clientCards = await ClientCard.find().sort({ createdAt: -1 });
-      return successResponse(reply, clientCards);
+      return reply.send(successResponse(clientCards));
     } catch (error) {
-      return errorResponse(reply, 'Erreur lors de la récupération des cartes clients', error);
+      console.error('Erreur client cards:', error);
+      return reply.status(500).send(errorResponse('Erreur lors de la récupération des cartes clients'));
     }
   });
 
@@ -472,11 +491,12 @@ export async function adminRoutes(fastify: FastifyInstance) {
       try {
         const card = await ClientCard.findById(request.params.id);
         if (!card) {
-          return errorResponse(reply, 'Carte client non trouvée', null, 404);
+          return reply.status(404).send(errorResponse('Carte client non trouvée'));
         }
-        return successResponse(reply, card);
+        return reply.send(successResponse(card));
       } catch (error) {
-        return errorResponse(reply, 'Erreur lors de la récupération de la carte client', error);
+        console.error('Erreur get client card:', error);
+        return reply.status(500).send(errorResponse('Erreur lors de la récupération de la carte client'));
       }
     }
   );
@@ -487,9 +507,10 @@ export async function adminRoutes(fastify: FastifyInstance) {
     async (request: FastifyRequest<{ Params: { orderId: string } }>, reply: FastifyReply) => {
       try {
         const cards = await ClientCard.findByOrderId(request.params.orderId);
-        return successResponse(reply, cards);
+        return reply.send(successResponse(cards));
       } catch (error) {
-        return errorResponse(reply, 'Erreur lors de la récupération des cartes', error);
+        console.error('Erreur get cards by order:', error);
+        return reply.status(500).send(errorResponse('Erreur lors de la récupération des cartes'));
       }
     }
   );
@@ -519,12 +540,13 @@ export async function adminRoutes(fastify: FastifyInstance) {
         });
 
         if (!card) {
-          return errorResponse(reply, 'Carte client non trouvée', null, 404);
+          return reply.status(404).send(errorResponse('Carte client non trouvée'));
         }
 
-        return successResponse(reply, card);
+        return reply.send(successResponse(card));
       } catch (error) {
-        return errorResponse(reply, 'Erreur lors de la mise à jour de la carte client', error);
+        console.error('Erreur update client card status:', error);
+        return reply.status(500).send(errorResponse('Erreur lors de la mise à jour de la carte client'));
       }
     }
   );
@@ -557,12 +579,13 @@ export async function adminRoutes(fastify: FastifyInstance) {
         });
 
         if (!card) {
-          return errorResponse(reply, 'Carte client non trouvée', null, 404);
+          return reply.status(404).send(errorResponse('Carte client non trouvée'));
         }
 
-        return successResponse(reply, card);
+        return reply.send(successResponse(card));
       } catch (error) {
-        return errorResponse(reply, 'Erreur lors de la mise à jour de la carte client', error);
+        console.error('Erreur update client card:', error);
+        return reply.status(500).send(errorResponse('Erreur lors de la mise à jour de la carte client'));
       }
     }
   );
@@ -599,9 +622,10 @@ export async function adminRoutes(fastify: FastifyInstance) {
       try {
         const card = new ClientCard(request.body);
         await card.save();
-        return successResponse(reply, card, 'Carte client créée avec succès', 201);
+        return reply.status(201).send(successResponse(card, 'Carte client créée avec succès'));
       } catch (error) {
-        return errorResponse(reply, 'Erreur lors de la création de la carte client', error);
+        console.error('Erreur create client card:', error);
+        return reply.status(500).send(errorResponse('Erreur lors de la création de la carte client'));
       }
     }
   );
@@ -613,11 +637,12 @@ export async function adminRoutes(fastify: FastifyInstance) {
       try {
         const card = await ClientCard.findByIdAndDelete(request.params.id);
         if (!card) {
-          return errorResponse(reply, 'Carte client non trouvée', null, 404);
+          return reply.status(404).send(errorResponse('Carte client non trouvée'));
         }
-        return successResponse(reply, { message: 'Carte client supprimée avec succès' });
+        return reply.send(successResponse({ message: 'Carte client supprimée avec succès' }));
       } catch (error) {
-        return errorResponse(reply, 'Erreur lors de la suppression de la carte client', error);
+        console.error('Erreur delete client card:', error);
+        return reply.status(500).send(errorResponse('Erreur lors de la suppression de la carte client'));
       }
     }
   );
