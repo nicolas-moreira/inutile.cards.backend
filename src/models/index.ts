@@ -6,6 +6,7 @@ export { UserFinance, Bill, PhysicalCard } from './Finance.js';
 export { Order } from './Order.js';
 export { ProductCard } from './ProductCard.js';
 export { ClientCard } from './ClientCard.js';
+export { CardScan } from './CardScan.js';
 
 // Export des types/interfaces (compile-time only)
 export type { IUserDocument } from './User.js';
@@ -15,6 +16,7 @@ export type { IUserFinanceDocument, IBillDocument, IPhysicalCardDocument } from 
 export type { IOrderDocument } from './Order.js';
 export type { IProductCardDocument } from './ProductCard.js';
 export type { IClientCardDocument } from './ClientCard.js';
+export type { ICardScanDocument } from './CardScan.js';
 
 
 
