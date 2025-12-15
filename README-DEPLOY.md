@@ -16,41 +16,74 @@ npm install && npm run build
 npm start
 ```
 
-### 2. Variables d'environnement
+**HTTP Port:** `8080`
 
-Ajoutez ces variables dans l'interface DigitalOcean :
+### 2. Variables d'environnement requises
 
-- `MONGODB_URI`: `mongodb+srv://doadmin:1073HXg4E68OdoC9@db-inutilecorp-34a5d185.mongo.ondigitalocean.com/admin?authSource=admin&replicaSet=db-inutilecorp&tls=true`
-- `JWT_SECRET`: (générez un secret aléatoire fort)
-- `NODE_ENV`: `production`
-- `HOST`: `0.0.0.0`
-- `FRONTEND_URL`: `https://inutile.cards`
-
-⚠️ **Important**: Ne définissez PAS la variable `PORT`. DigitalOcean la fournit automatiquement.
-
-### 3. Health Check
-
-- **HTTP Request Route**: `/health`
-- **Port**: Laissez vide (DigitalOcean utilise automatiquement le port de l'app)
-- **Timeout**: 3 secondes
-- **Period**: 60 secondes
-
-### 4. Vérification
-
-Une fois déployé, testez :
+⚠️ **IMPORTANT** : Ajoutez ces variables dans l'interface DigitalOcean (Settings → Environment Variables)
 
 ```bash
-curl https://api.inutile.cards/health
+# Server
+PORT=8080
+HOST=0.0.0.0
+NODE_ENV=production
+
+# Database MongoDB (DigitalOcean)
+MONGODB_URI=mongodb+srv://doadmin:1073HXg4E68OdoC9@db-inutilecorp-34a5d185.mongo.ondigitalocean.com/admin?authSource=admin&replicaSet=db-inutilecorp&tls=true
+
+# JWT (générez un secret fort)
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+JWT_EXPIRES_IN=7d
+
+# Frontend
+FRONTEND_URL=https://inutile.cards
+```
+
+### 3. Health Check Configuration
+
+Dans Settings → Health Check :
+
+- **HTTP Request Route**: `/health`
+- **Port**: `8080`
+- **Timeout**: 3 secondes
+- **Period**: 60 secondes
+- **Success Threshold**: 1
+- **Failure Threshold**: 3
+
+### 4. Vérification après déploiement
+
+✅ Une fois déployé, testez les endpoints :
+
+**Health Check:**
+```bash
+curl https://seahorse-app-vtzyo.ondigitalocean.app/health
 ```
 
 Devrait retourner :
 ```json
 {
   "status": "ok",
-  "timestamp": "2024-12-10T..."
+  "timestamp": "2024-12-15T..."
 }
 ```
 
-### 5. Documentation API
+**Documentation API:**
+```bash
+curl https://seahorse-app-vtzyo.ondigitalocean.app/docs
+```
 
-Accessible sur : `https://api.inutile.cards/docs`
+### 5. URLs de l'API en production
+
+- **API Base URL**: `https://seahorse-app-vtzyo.ondigitalocean.app`
+- **Health Check**: `https://seahorse-app-vtzyo.ondigitalocean.app/health`
+- **Documentation**: `https://seahorse-app-vtzyo.ondigitalocean.app/docs`
+- **Auth API**: `https://seahorse-app-vtzyo.ondigitalocean.app/api/auth`
+- **Profiles API**: `https://seahorse-app-vtzyo.ondigitalocean.app/api/profiles`
+
+### 6. Connexion à MongoDB
+
+La base de données MongoDB est hébergée sur DigitalOcean :
+- **Cluster**: `db-inutilecorp-34a5d185`
+- **Database**: `admin`
+- **Auth Source**: `admin`
+- **TLS**: Activé
