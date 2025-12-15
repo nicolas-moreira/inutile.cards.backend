@@ -23,14 +23,17 @@ Ajoutez ces variables dans l'interface DigitalOcean :
 - `MONGODB_URI`: `mongodb+srv://doadmin:1073HXg4E68OdoC9@db-inutilecorp-34a5d185.mongo.ondigitalocean.com/admin?authSource=admin&replicaSet=db-inutilecorp&tls=true`
 - `JWT_SECRET`: (générez un secret aléatoire fort)
 - `NODE_ENV`: `production`
-- `PORT`: `8080`
 - `HOST`: `0.0.0.0`
 - `FRONTEND_URL`: `https://inutile.cards`
 
+⚠️ **Important**: Ne définissez PAS la variable `PORT`. DigitalOcean la fournit automatiquement.
+
 ### 3. Health Check
 
-- Path: `/health`
-- Port: `8080`
+- **HTTP Request Route**: `/health`
+- **Port**: Laissez vide (DigitalOcean utilise automatiquement le port de l'app)
+- **Timeout**: 3 secondes
+- **Period**: 60 secondes
 
 ### 4. Vérification
 

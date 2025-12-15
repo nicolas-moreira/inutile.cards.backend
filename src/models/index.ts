@@ -1,10 +1,19 @@
-export { User, IUserDocument } from './User.js';
-export { Profile, IProfileDocument } from './Profile.js';
-export { Template, ITemplateDocument } from './Template.js';
-export { UserFinance, Bill, PhysicalCard, IUserFinanceDocument, IBillDocument, IPhysicalCardDocument } from './Finance.js';
-export { Order, IOrderDocument } from './Order.js';
-export { ProductCard, IProductCardDocument } from './ProductCard.js';
-export { ClientCard, IClientCardDocument } from './ClientCard.js';
+// Export models (runtime values)
+export { User } from './User.js';
+export { Profile } from './Profile.js';
+export { Template } from './Template.js';
+export { UserFinance, Bill, PhysicalCard } from './Finance.js';
+export { Order } from './Order.js';
+export { ProductCard } from './ProductCard.js';
+export { ClientCard } from './ClientCard.js';
 
+// Export types (TypeScript only - not available at runtime)
+export type { IUserDocument } from './User.js';
+export type { IProfileDocument } from './Profile.js';
+export type { ITemplateDocument } from './Template.js';
+export type { IUserFinanceDocument, IBillDocument, IPhysicalCardDocument } from './Finance.js';
+export type { IOrderDocument } from './Order.js';
+export type { IProductCardDocument } from './ProductCard.js';
+export type { IClientCardDocument } from './ClientCard.js';
 
 
