@@ -594,13 +594,13 @@ export async function adminRoutes(fastify: FastifyInstance) {
   fastify.post<{
     Body: {
       serialNumber: string;
-      orderId: string;
+      orderId?: string;
       customerName: string;
       email: string;
       cardType: string;
       design: string;
       shippingAddress?: string;
-      orderDate: Date;
+      orderDate?: Date;
     };
   }>(
     '/client-cards',
@@ -608,23 +608,31 @@ export async function adminRoutes(fastify: FastifyInstance) {
       request: FastifyRequest<{
         Body: {
           serialNumber: string;
-          orderId: string;
+          orderId?: string;
           customerName: string;
           email: string;
           cardType: string;
           design: string;
           shippingAddress?: string;
-          orderDate: Date;
+          orderDate?: Date;
         };
       }>,
       reply: FastifyReply
     ) => {
       try {
-        const card = new ClientCard(request.body);
+        const cardData = {
+          ...request.body,
+          orderDate: request.body.orderDate || new Date(),
+        };
+        const card = new ClientCard(cardData);
         await card.save();
         return reply.status(201).send(successResponse(card, 'Carte client créée avec succès'));
-      } catch (error) {
+      } catch (error: any) {
         console.error('Erreur create client card:', error);
+        // Check for duplicate serial number error
+        if (error.code === 11000) {
+          return reply.status(400).send(errorResponse('Ce numéro de série existe déjà'));
+        }
         return reply.status(500).send(errorResponse('Erreur lors de la création de la carte client'));
       }
     }

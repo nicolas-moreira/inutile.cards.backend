@@ -13,6 +13,7 @@ import {
   financeRoutes,
   userRoutes,
   adminRoutes,
+  cardsRoutes,
 } from './routes/index.js';
 
 const fastify = Fastify({
@@ -89,6 +90,7 @@ async function registerRoutes() {
   await fastify.register(financeRoutes, { prefix: '/api/finances' });
   await fastify.register(userRoutes, { prefix: '/api/users' });
   await fastify.register(adminRoutes, { prefix: '/api/admin' });
+  await fastify.register(cardsRoutes, { prefix: '/api/cards' });
 }
 
 // Start server

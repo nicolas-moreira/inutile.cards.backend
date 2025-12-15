@@ -154,3 +154,10 @@ physicalCardSchema.index({ userId: 1 });
 
 export const PhysicalCard = mongoose.model<IPhysicalCardDocument>('PhysicalCard', physicalCardSchema);
 
+// Re-export des interfaces et modèles pour éviter les problèmes d'ESM
+export type {
+  IUserFinanceDocument,
+  IBillDocument,
+  IPhysicalCardDocument,
+};
+

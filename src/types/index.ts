@@ -188,8 +188,9 @@ export type ClientCardStatus = 'ordered' | 'manufacturing' | 'shipped' | 'delive
 export interface IClientCard {
   _id: string;
   serialNumber: string;
-  orderId: string;
+  orderId?: string;
   userId?: string;
+  profileId?: string;
   customerName: string;
   email: string;
   cardType: string;

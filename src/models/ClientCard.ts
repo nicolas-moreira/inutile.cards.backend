@@ -22,13 +22,17 @@ const clientCardSchema = new Schema<IClientCardDocument>(
     },
     orderId: {
       type: String,
-      required: true,
       ref: 'Order',
       index: true,
     },
     userId: {
       type: String,
       ref: 'User',
+      index: true,
+    },
+    profileId: {
+      type: String,
+      ref: 'Profile',
       index: true,
     },
     customerName: {
