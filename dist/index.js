@@ -5,7 +5,7 @@ import swagger from '@fastify/swagger';
 import swaggerUi from '@fastify/swagger-ui';
 import { config } from './config/env.js';
 import { connectDatabase } from './config/database.js';
-import { authRoutes, profileRoutes, templateRoutes, financeRoutes, userRoutes, adminRoutes, cardsRoutes, } from './routes/index.js';
+import { authRoutes, profileRoutes, templateRoutes, financeRoutes, userRoutes, adminRoutes, cardsRoutes, analyticsRoutes, subscriptionsRoutes, companiesRoutes, } from './routes/index.js';
 const fastify = Fastify({
     logger: {
         level: config.server.nodeEnv === 'development' ? 'info' : 'warn',
@@ -75,6 +75,9 @@ async function registerRoutes() {
     await fastify.register(userRoutes, { prefix: '/api/users' });
     await fastify.register(adminRoutes, { prefix: '/api/admin' });
     await fastify.register(cardsRoutes, { prefix: '/api/cards' });
+    await fastify.register(analyticsRoutes, { prefix: '/api/analytics' });
+    await fastify.register(subscriptionsRoutes, { prefix: '/api/subscriptions' });
+    await fastify.register(companiesRoutes, { prefix: '/api/companies' });
 }
 // Start server
 async function start() {

@@ -5,6 +5,10 @@ export { UserFinance, Bill, PhysicalCard } from './Finance.js';
 export { Order } from './Order.js';
 export { ProductCard } from './ProductCard.js';
 export { ClientCard } from './ClientCard.js';
+export { CardScan } from './CardScan.js';
+export { Subscription } from './Subscription.js';
+export { UserSubscription } from './UserSubscription.js';
+export { Company } from './Company.js';
 export type { IUserDocument } from './User.js';
 export type { IProfileDocument } from './Profile.js';
 export type { ITemplateDocument } from './Template.js';
@@ -12,4 +16,8 @@ export type { IUserFinanceDocument, IBillDocument, IPhysicalCardDocument } from 
 export type { IOrderDocument } from './Order.js';
 export type { IProductCardDocument } from './ProductCard.js';
 export type { IClientCardDocument } from './ClientCard.js';
+export type { ICardScanDocument } from './CardScan.js';
+export type { ISubscriptionDocument } from './Subscription.js';
+export type { IUserSubscriptionDocument } from './UserSubscription.js';
+export type { ICompanyDocument } from './Company.js';
 //# sourceMappingURL=index.d.ts.map

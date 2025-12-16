@@ -6,4 +6,8 @@ export { UserFinance, Bill, PhysicalCard } from './Finance.js';
 export { Order } from './Order.js';
 export { ProductCard } from './ProductCard.js';
 export { ClientCard } from './ClientCard.js';
+export { CardScan } from './CardScan.js';
+export { Subscription } from './Subscription.js';
+export { UserSubscription } from './UserSubscription.js';
+export { Company } from './Company.js';
 //# sourceMappingURL=index.js.map

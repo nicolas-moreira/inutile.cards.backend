@@ -103,6 +103,7 @@ export async function analyticsRoutes(fastify: FastifyInstance) {
           users: calculateGrowth(newUsers, previousUsers),
           scans: calculateGrowth(periodScans, previousScans),
           orders: calculateGrowth(newOrders, previousOrders),
+          revenue: 0, // Will be calculated below
         };
 
         // Calculate total revenue

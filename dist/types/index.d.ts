@@ -11,6 +11,7 @@ export interface IUser {
     isActive: boolean;
     resetPasswordToken?: string;
     resetPasswordExpires?: Date;
+    companyId?: string;
     createdAt: Date;
     updatedAt: Date;
 }

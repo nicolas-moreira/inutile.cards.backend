@@ -181,7 +181,7 @@ export async function companiesRoutes(fastify: FastifyInstance) {
         await company.save();
 
         // Update admin user with companyId
-        adminUser.companyId = company._id;
+        adminUser.companyId = company._id.toString();
         await adminUser.save();
 
         return reply.status(201).send(successResponse(company, 'Société créée avec succès'));
@@ -338,7 +338,7 @@ export async function companiesRoutes(fastify: FastifyInstance) {
             return reply.status(400).send(errorResponse('Cet utilisateur appartient déjà à une société'));
           }
 
-          user.companyId = company._id;
+          user.companyId = company._id.toString();
           await user.save();
         } else {
           // Create new employee
@@ -356,7 +356,7 @@ export async function companiesRoutes(fastify: FastifyInstance) {
 
           user = new User({
             ...request.body,
-            companyId: company._id,
+            companyId: company._id.toString(),
             role: 'user',
             isActive: true,
           });
@@ -435,7 +435,7 @@ export async function companiesRoutes(fastify: FastifyInstance) {
           return reply.status(404).send(errorResponse('Employé non trouvé'));
         }
 
-        card.userId = user._id;
+        card.userId = user._id.toString();
         card.status = 'shipped'; // or 'activated' depending on your workflow
         await card.save();
 
@@ -470,7 +470,7 @@ export async function companiesRoutes(fastify: FastifyInstance) {
 
         card.userId = undefined;
         card.profileId = undefined;
-        card.status = 'pending';
+        card.status = 'ordered';
         await card.save();
 
         return reply.send(successResponse(card, 'Carte retirée avec succès'));

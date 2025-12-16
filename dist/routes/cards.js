@@ -1,4 +1,4 @@
-import { ClientCard, Profile } from '../models/index.js';
+import { ClientCard, Profile, CardScan } from '../models/index.js';
 import { authenticateToken } from '../middleware/auth.js';
 import { successResponse, errorResponse } from '../utils/response.js';
 export async function cardsRoutes(fastify) {
@@ -131,6 +131,104 @@ export async function cardsRoutes(fastify) {
         catch (error) {
             console.error('Erreur get my cards:', error);
             return reply.status(500).send(errorResponse('Erreur lors de la récupération des cartes'));
+        }
+    });
+    // ============================================
+    // ANALYTICS ROUTES
+    // ============================================
+    // Record a card scan (PUBLIC - no auth required)
+    fastify.post('/scan', async (request, reply) => {
+        try {
+            const { serialNumber, userAgent, referer } = request.body;
+            if (!serialNumber) {
+                return reply.status(400).send(errorResponse('Le numéro de série est requis'));
+            }
+            // Find the card
+            const card = await ClientCard.findBySerialNumber(serialNumber);
+            if (!card) {
+                return reply.status(404).send(errorResponse('Carte non trouvée'));
+            }
+            // Detect device type from user agent
+            let device = 'unknown';
+            if (userAgent) {
+                if (/mobile/i.test(userAgent)) {
+                    device = 'mobile';
+                }
+                else if (/tablet|ipad/i.test(userAgent)) {
+                    device = 'tablet';
+                }
+                else if (/mozilla/i.test(userAgent)) {
+                    device = 'desktop';
+                }
+            }
+            // Detect browser
+            let browser = 'unknown';
+            if (userAgent) {
+                if (/chrome/i.test(userAgent))
+                    browser = 'Chrome';
+                else if (/safari/i.test(userAgent))
+                    browser = 'Safari';
+                else if (/firefox/i.test(userAgent))
+                    browser = 'Firefox';
+                else if (/edge/i.test(userAgent))
+                    browser = 'Edge';
+            }
+            // Get IP address
+            const ipAddress = request.headers['x-forwarded-for'] || request.ip;
+            // Create scan record
+            const scan = new CardScan({
+                cardId: card._id.toString(),
+                serialNumber: card.serialNumber,
+                userId: card.userId,
+                scanDate: new Date(),
+                ipAddress: typeof ipAddress === 'string' ? ipAddress : ipAddress?.[0],
+                userAgent,
+                referer,
+                device,
+                browser,
+            });
+            await scan.save();
+            return reply.send(successResponse({ recorded: true }, 'Scan enregistré'));
+        }
+        catch (error) {
+            console.error('Erreur record scan:', error);
+            return reply.status(500).send(errorResponse('Erreur lors de l\'enregistrement du scan'));
+        }
+    });
+    // Get user's analytics
+    fastify.get('/analytics', {
+        onRequest: authenticateToken,
+    }, async (request, reply) => {
+        try {
+            const authRequest = request;
+            const stats = await CardScan.getUserStats(authRequest.user.userId);
+            return reply.send(successResponse(stats));
+        }
+        catch (error) {
+            console.error('Erreur get analytics:', error);
+            return reply.status(500).send(errorResponse('Erreur lors de la récupération des analytics'));
+        }
+    });
+    // Get specific card analytics
+    fastify.get('/analytics/:cardId', {
+        onRequest: authenticateToken,
+    }, async (request, reply) => {
+        try {
+            const authRequest = request;
+            const card = await ClientCard.findById(request.params.cardId);
+            if (!card) {
+                return reply.status(404).send(errorResponse('Carte non trouvée'));
+            }
+            // Verify ownership
+            if (card.userId !== authRequest.user.userId) {
+                return reply.status(403).send(errorResponse('Accès non autorisé'));
+            }
+            const stats = await CardScan.getCardStats(request.params.cardId);
+            return reply.send(successResponse(stats));
+        }
+        catch (error) {
+            console.error('Erreur get card analytics:', error);
+            return reply.status(500).send(errorResponse('Erreur lors de la récupération des analytics'));
         }
     });
 }
