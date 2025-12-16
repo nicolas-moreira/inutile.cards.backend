@@ -96,7 +96,7 @@ const subscriptionSchema = new Schema<ISubscriptionDocument>(
   }
 );
 
-subscriptionSchema.index({ slug: 1 });
+// slug index already created by unique: true
 subscriptionSchema.index({ active: 1 });
 
 export const Subscription = mongoose.model<ISubscriptionDocument>('Subscription', subscriptionSchema);

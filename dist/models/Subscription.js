@@ -68,7 +68,7 @@ const subscriptionSchema = new Schema({
 }, {
     timestamps: true,
 });
-subscriptionSchema.index({ slug: 1 });
+// slug index already created by unique: true
 subscriptionSchema.index({ active: 1 });
 export const Subscription = mongoose.model('Subscription', subscriptionSchema);
 //# sourceMappingURL=Subscription.js.map

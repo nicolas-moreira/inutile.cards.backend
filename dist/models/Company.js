@@ -12,7 +12,7 @@ const companySchema = new Schema({
         unique: true,
         lowercase: true,
         trim: true,
-        index: true,
+        // index already created by unique: true
     },
     logo: {
         type: String,
@@ -87,8 +87,7 @@ companySchema.statics.findBySlug = function (slug) {
 companySchema.statics.findByAdminUserId = function (userId) {
     return this.find({ adminUserId: userId });
 };
-// Indexes
-companySchema.index({ status: 1 });
+// Indexes (status index already created by index: true on field)
 companySchema.index({ createdAt: -1 });
 export const Company = mongoose.model('Company', companySchema);
 //# sourceMappingURL=Company.js.map
