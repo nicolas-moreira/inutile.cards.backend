@@ -54,6 +54,11 @@ const userSchema = new Schema<IUserDocument>(
     resetPasswordExpires: {
       type: Date,
     },
+    companyId: {
+      type: String,
+      ref: 'Company',
+      index: true,
+    },
   },
   {
     timestamps: true,

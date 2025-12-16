@@ -5,6 +5,9 @@ export { financeRoutes } from './finances.js';
 export { userRoutes } from './users.js';
 export { adminRoutes } from './admin.js';
 export { cardsRoutes } from './cards.js';
+export { analyticsRoutes } from './analytics.js';
+export { subscriptionsRoutes } from './subscriptions.js';
+export { companiesRoutes } from './companies.js';
 
 
 

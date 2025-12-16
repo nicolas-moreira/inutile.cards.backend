@@ -309,6 +309,7 @@ export async function adminRoutes(fastify: FastifyInstance) {
       lastName: string;
       email: string;
       phone: string;
+      role: 'user' | 'admin';
       isActive: boolean;
     }>;
   }>(
@@ -321,6 +322,7 @@ export async function adminRoutes(fastify: FastifyInstance) {
           lastName: string;
           email: string;
           phone: string;
+          role: 'user' | 'admin';
           isActive: boolean;
         }>;
       }>,

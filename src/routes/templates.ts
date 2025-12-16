@@ -38,6 +38,18 @@ export async function templateRoutes(fastify: FastifyInstance): Promise<void> {
     }
   });
 
+  // Admin: Get all templates (active and inactive)
+  fastify.get('/admin/all', { preHandler: [authenticateToken, requireAdmin] }, async (request: FastifyRequest, reply: FastifyReply) => {
+    try {
+      const templates = await Template.find().sort({ createdAt: -1 });
+      
+      return reply.send(successResponse(templates));
+    } catch (error) {
+      fastify.log.error(error);
+      return reply.status(500).send(errorResponse('Erreur serveur'));
+    }
+  });
+
   // Get template by ID
   fastify.get('/:id', async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
     try {
@@ -90,6 +102,24 @@ export async function templateRoutes(fastify: FastifyInstance): Promise<void> {
       const body = createTemplateSchema.parse(request.body);
       
       const template = new Template(body);
+      await template.save();
+      
+      return reply.status(201).send(successResponse(template, 'Template créé'));
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return reply.status(400).send(errorResponse(error.errors[0].message));
+      }
+      fastify.log.error(error);
+      return reply.status(500).send(errorResponse('Erreur lors de la création du template'));
+    }
+  });
+
+  // Admin: Create template
+  fastify.post('/', { preHandler: [authenticateToken, requireAdmin] }, async (request: FastifyRequest, reply: FastifyReply) => {
+    try {
+      const body = createTemplateSchema.parse(request.body);
+      
+      const template = new Template({ ...body, isActive: true });
       await template.save();
       
       return reply.status(201).send(successResponse(template, 'Template créé'));

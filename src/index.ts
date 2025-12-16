@@ -14,6 +14,9 @@ import {
   userRoutes,
   adminRoutes,
   cardsRoutes,
+  analyticsRoutes,
+  subscriptionsRoutes,
+  companiesRoutes,
 } from './routes/index.js';
 
 const fastify = Fastify({
@@ -91,6 +94,9 @@ async function registerRoutes() {
   await fastify.register(userRoutes, { prefix: '/api/users' });
   await fastify.register(adminRoutes, { prefix: '/api/admin' });
   await fastify.register(cardsRoutes, { prefix: '/api/cards' });
+  await fastify.register(analyticsRoutes, { prefix: '/api/analytics' });
+  await fastify.register(subscriptionsRoutes, { prefix: '/api/subscriptions' });
+  await fastify.register(companiesRoutes, { prefix: '/api/companies' });
 }
 
 // Start server
